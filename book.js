@@ -3,7 +3,7 @@ const cors = require('cors');
 const { default: mongoose } = require('mongoose');
 
 const app = express()
-const port = 3000
+const port = 3000   
 
 
 app.use(express.json());
@@ -63,9 +63,9 @@ app.put('/app/books/:id', async (req, res) => {
 app.delete('/app/books/:id', async (req, res) => {
     try {
         const book = await Book.findByIdAndDelete(req.params.id);
-        if(!book) return res.status(404).json({message: 'Book not found'});
-        res.json({message: 'Book deleted'});
-    }
+        if(!book) return res.status(404).json({message: 'Book not found',});
+        res.json({message: 'Book deleted', data: book});
+    }       
     catch (err) {
         res.status(500).json({ message: 'Book not found', error: err });
     }
